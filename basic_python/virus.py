@@ -92,10 +92,9 @@ from flask import request
 def save(user_database,virus_database):
     ##write database    
     data = [user_database,virus_database]
-    print(data)
     with open(DB_PATH, 'wb') as handle:
         pickle.dump(data, handle, protocol=pickle.HIGHEST_PROTOCOL)
-
+##ทำการ save virus สองตัวแรก
 save(user_database=user_database,virus_database=Virus_database)
 
 def virus_app(userid , text_input):
@@ -103,11 +102,8 @@ def virus_app(userid , text_input):
     ### read database
     with open(DB_PATH, 'rb') as handle:
         data = pickle.load(handle)
-        print(data)
         user_database = data[0]
-        print(user_database)
         Virus_database = data[1]
-        print(Virus_database)
         Virus_names = Virus_database.keys()
         
     if userid not in user_database.keys():
@@ -131,7 +127,6 @@ def virus_app(userid , text_input):
         
         elif text_input == "4":
             user_database[userid]["session"] = "SHOW_VIRUS"
-            print("hello")
             save(user_database,Virus_database)  
             return "กรุณาระบุชื่อไวรัส"
         
@@ -174,8 +169,6 @@ def virus_app(userid , text_input):
         
     elif user_database[userid]["session"] == "DELETE_VIRUS":
         ## validate (text from user)
-        print(Virus_names)
-        print(match_fuzzy(text_input,Virus_names,score = 50))
         if match_fuzzy(text_input,Virus_names,score = 50):
             ชื่อของไวรัส = match_fuzzy(text_input,Virus_names,score = 50)
             ## update
