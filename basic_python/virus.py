@@ -82,31 +82,51 @@ Virus_database =    {
 
 Virus_names = Virus_database.keys()
 
+### adding pickle
+import pickle
+
+def save(user_database,virus_database):
+    ##write database    
+    data = [user_database,virus_database]
+    with open('save.pkl', 'wb') as handle:
+        pickle.dump(data, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 def virus_app(userid , text_input):
+    ### read database
+    with open('save.pkl', 'rb') as handle:
+        data = pickle.load(handle)
+        user_database = data[0]
+        Virus_database = data[0]
+        Virus_names = Virus_database.keys()
+        
     if userid not in user_database.keys():
         user_database[userid] = {"session":None,"ชื่อของไวรัส":None}
 
     if user_database[userid]["session"] is None:
         if text_input == "1":
-            user_database[userid]["session"] = "CREATE_VIRUS"  
+            user_database[userid]["session"] = "CREATE_VIRUS"
+            save(user_database)  
             return "กรุณาระบุชื่อไวรัส"
         
         elif text_input == "2":
             user_database[userid]["session"] = "DELETE_VIRUS"
+            save(user_database)  
             return "กรุณาระบุชื่อไวรัส"
         
         elif text_input == "3":
             user_database[userid]["session"] = "UPDATE_VIRUS"
+            save(user_database)  
             return "กรุณาระบุชื่อไวรัส"
         
         elif text_input == "4":
             user_database[userid]["session"] = "SHOW_VIRUS"
             print("hello")
+            save(user_database)  
             return "กรุณาระบุชื่อไวรัส"
         
         elif text_input == "เข้าสู่เมนู CSV Search":
             user_database[userid]["session"] = "CSV_FINDER"
+            save(user_database)  
             return "ท่านได้เข้าสู่เมนูการค้นหาข้อมูลจากไฟล์ Excel , CSV \n กรุณาระบุ Keyword ที่ท่านต้องการค้นหา"
         
         else :
@@ -116,6 +136,7 @@ def virus_app(userid , text_input):
     elif user_database[userid]["session"] == "CSV_FINDER":
         if text_input == "ออกจากการค้นหา":
             user_database[userid]["session"] = None
+            save(user_database)  
             return "ท่านได้ออกจากเมนูค้นหาไฟล์ CSV"
         
         else:
@@ -147,6 +168,7 @@ def virus_app(userid , text_input):
             ## update
             Virus_database.pop(ชื่อของไวรัส)
             user_database[userid]["session"] = None  
+            save(user_database)  
             ## output
             return "ท่านได้ทำการลบข้อมูลของไวรัส {} สามารถตรวจสอบได้ที่ http://127.0.0.1:5000/".format(ชื่อของไวรัส)
         else:
@@ -158,7 +180,8 @@ def virus_app(userid , text_input):
             ชื่อของไวรัส = match_fuzzy(text_input,Virus_names,score = 50)
             ## update
             Data_To_Show = Virus_database[ชื่อของไวรัส]
-            user_database[userid]["session"] = None  
+            user_database[userid]["session"] = None 
+            save(user_database)   
             ## output
             return "นี้คือข้อมูลของไวรัส {} มีข้อมูลดังนี้\n{} สามารถตรวจสอบได้ที่ http://127.0.0.1:5000/".format(ชื่อของไวรัส,Data_To_Show)
         else:
@@ -173,6 +196,7 @@ def virus_app(userid , text_input):
             user_database[userid]["ชื่อของไวรัส"] = ชื่อของไวรัส
             Virus_database[ชื่อของไวรัส] = {}
             user_database[userid]["session"] = "INPUT_VIRUS_DATA_AREA"  ### ใส่ข้อมูลของ ไวรัส
+            save(user_database)  
             ## output
             return "กรุณากรอกข้อมูล บริเวณที่ระบาด ของไวรัสด้วยค่ะ"
         else:
@@ -187,6 +211,7 @@ def virus_app(userid , text_input):
             user_database[userid]["ชื่อของไวรัส"] = ชื่อของไวรัส
             Virus_database[ชื่อของไวรัส] = {}
             user_database[userid]["session"] = "INPUT_VIRUS_DATA_AREA"  ### ใส่ข้อมูลของ ไวรัส
+            save(user_database)  
             ## output
             return "กรุณากรอกข้อมูล บริเวณที่ระบาด ของไวรัสด้วยค่ะ"
         else:
@@ -198,6 +223,7 @@ def virus_app(userid , text_input):
         ชื่อของไวรัส = user_database[userid]["ชื่อของไวรัส"]
         Virus_database[ชื่อของไวรัส]["ระบาดใน"] = text_input
         user_database[userid]["session"] = "INPUT_VIRUS_DATA_INFECTED"
+        save(user_database)  
         ## output
         return "กรุณากรอกข้อมูล จำนวนผู้ติดเชื้อ ของไวรัสด้วยค่ะ (ระบุเป็นตัวเลขเท่านั้น)"
  
@@ -210,6 +236,7 @@ def virus_app(userid , text_input):
             ## update
             Virus_database[ชื่อของไวรัส]["จำนวนผู้ติดเชื้อ"] = text_input
             user_database[userid]["session"] = "INPUT_VIRUS_DATA_DEAD"
+            save(user_database)  
             ## output
             return "กรุณากรอกข้อมูล จำนวนผู้เสียชีวิต ของไวรัสด้วยค่ะ (ระบุเป็นตัวเลขเท่านั้น)"  
         else :
@@ -220,8 +247,11 @@ def virus_app(userid , text_input):
             ชื่อของไวรัส = user_database[userid]["ชื่อของไวรัส"]
             Virus_database[ชื่อของไวรัส]["จำนวนผู้เสียชีวิต"] = text_input
             user_database[userid]["session"] = None
+            save(user_database)
             return "ท่านได้สร้างข้อมูลไวรัส เสร็จแล้วเรียบร้อย"
         else :
             return "กรุณาระบุตัวเลขผู้ติดเสียชีวิตอีกครั้งคะ" 
-        
+    
+
+
         
