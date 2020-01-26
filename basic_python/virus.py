@@ -103,7 +103,9 @@ def virus_app(userid , text_input):
     with open(DB_PATH, 'rb') as handle:
         data = pickle.load(handle)
         user_database = data[0]
+        print(user_database)
         Virus_database = data[0]
+        print(Virus_database)
         Virus_names = Virus_database.keys()
         
     if userid not in user_database.keys():
@@ -170,6 +172,8 @@ def virus_app(userid , text_input):
         
     elif user_database[userid]["session"] == "DELETE_VIRUS":
         ## validate (text from user)
+        print(Virus_names)
+        print(match_fuzzy(text_input,Virus_names,score = 50))
         if match_fuzzy(text_input,Virus_names,score = 50):
             ชื่อของไวรัส = match_fuzzy(text_input,Virus_names,score = 50)
             ## update
