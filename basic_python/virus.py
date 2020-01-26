@@ -106,7 +106,7 @@ def virus_app(userid , text_input):
         print(data)
         user_database = data[0]
         print(user_database)
-        Virus_database = data[0]
+        Virus_database = data[1]
         print(Virus_database)
         Virus_names = Virus_database.keys()
         
