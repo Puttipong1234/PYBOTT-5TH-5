@@ -8,8 +8,11 @@ from linebot.exceptions import (
 )
 from linebot.models import *
 from config import access_token , channel_secret  #import ตัวแปรเข้ามา
-
+import os
 app = Flask(__name__)
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__)) #pathตามโฟลเดอร์ ที่อยู่ของไฟล์นี้
+CSV_PATH = os.path.join("basic_python","CSVs")
+# "basic_python\CSVs\รายการบ้านสองชั้น.csv"
 
 line_bot_api = LineBotApi(access_token) #channel access token
 handler = WebhookHandler(channel_secret) #channel secret
