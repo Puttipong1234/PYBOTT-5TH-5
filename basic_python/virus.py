@@ -64,7 +64,7 @@ from .msgflex.flex import flex_find_row , make_carousel
 from .utils.reply import SetMessage_Object
 from linebot.models import *
 
-CSV = csvFinder(csvPath="basic_python\CSVs\รายการบ้านสองชั้น.csv")
+CSV = csvFinder(csvPath=".\\basic_python\CSVs\รายการบ้านสองชั้น.csv")
 CSV.set_finding_column("รายการ")
 CSV.add_stop_word("อยากทราบ","ครับ","ค่ะ")
 
