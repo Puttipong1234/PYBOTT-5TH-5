@@ -58,12 +58,14 @@
 
 
 user_database = {}
+from config import CSV_PATH
+import os
 from .match_fuzzy import match_fuzzy
 from .utils.csvFinder import csvFinder
 from .msgflex.flex import flex_find_row , make_carousel
 from .utils.reply import SetMessage_Object
 from linebot.models import *
-from app import CSV_PATH , os
+from .main_menu import main_menu_message
 csv_path = os.path.join(CSV_PATH,"รายการบ้านสองชั้น.csv")
 CSV = csvFinder(csvPath=csv_path)
 CSV.set_finding_column("รายการ")
@@ -108,7 +110,6 @@ def virus_app(userid , text_input):
             return "ท่านได้เข้าสู่เมนูการค้นหาข้อมูลจากไฟล์ Excel , CSV \n กรุณาระบุ Keyword ที่ท่านต้องการค้นหา"
         
         else :
-            from .main_menu import main_menu_message
             flex_message = main_menu_message()
             return flex_message
     
