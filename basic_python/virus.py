@@ -58,7 +58,7 @@
 
 
 user_database = {}
-from config import CSV_PATH
+from config import CSV_PATH , DB_PATH
 import os
 from .match_fuzzy import match_fuzzy
 from .utils.csvFinder import csvFinder
@@ -88,12 +88,12 @@ import pickle
 def save(user_database,virus_database):
     ##write database    
     data = [user_database,virus_database]
-    with open('save.pkl', 'wb') as handle:
+    with open(DB_PATH, 'wb') as handle:
         pickle.dump(data, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 def virus_app(userid , text_input):
     ### read database
-    with open('save.pkl', 'rb') as handle:
+    with open(DB_PATH, 'rb') as handle:
         data = pickle.load(handle)
         user_database = data[0]
         Virus_database = data[0]
