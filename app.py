@@ -19,6 +19,7 @@ handler = WebhookHandler(channel_secret) #channel secret
 
 ### แก้ไข การแสดงผล หน้าเว็บ ดึงข้อมูลมาจาก ฐานข้อมูล
 from config import DB_PATH
+import pickle
 @app.route("/")
 def index():
     Virus_database = None
