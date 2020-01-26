@@ -92,6 +92,7 @@ from flask import request
 def save(user_database,virus_database):
     ##write database    
     data = [user_database,virus_database]
+    print(data)
     with open(DB_PATH, 'wb') as handle:
         pickle.dump(data, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
@@ -102,6 +103,7 @@ def virus_app(userid , text_input):
     ### read database
     with open(DB_PATH, 'rb') as handle:
         data = pickle.load(handle)
+        print(data)
         user_database = data[0]
         print(user_database)
         Virus_database = data[0]
