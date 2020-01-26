@@ -53,6 +53,7 @@ def handle_message(event):
     # print(REPLYTOKEN ,"  -  ", TEXT_FROM_USER ,"  -  ", USER_ID)
     # process text and return text to reply
     TEXT_TO_REPLY = virus_app(userid=USER_ID,text_input=TEXT_FROM_USER)
+    print(TEXT_TO_REPLY)
     if isinstance(TEXT_TO_REPLY , str):
         line_bot_api.reply_message(event.reply_token
                                 ,TextSendMessage(text=TEXT_TO_REPLY))
