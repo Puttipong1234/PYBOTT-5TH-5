@@ -17,10 +17,14 @@ app = Flask(__name__)
 line_bot_api = LineBotApi(access_token) #channel access token
 handler = WebhookHandler(channel_secret) #channel secret
 
-
-from basic_python.virus import Virus_database
+### แก้ไข การแสดงผล หน้าเว็บ ดึงข้อมูลมาจาก ฐานข้อมูล
+from config import DB_PATH
 @app.route("/")
 def index():
+    Virus_database = None
+    with open(DB_PATH, 'rb') as handle:
+        data = pickle.load(handle)
+        Virus_database = data[1]
     return render_template("index.html",viruses=Virus_database)
 
 
