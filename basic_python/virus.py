@@ -85,11 +85,14 @@ Virus_names = Virus_database.keys()
 ### adding pickle
 import pickle
 
+
 def save(user_database,virus_database):
     ##write database    
     data = [user_database,virus_database]
     with open(DB_PATH, 'wb') as handle:
         pickle.dump(data, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
+save(user_database=user_database,virus_database=Virus_database)
 
 def virus_app(userid , text_input):
     ### read database
