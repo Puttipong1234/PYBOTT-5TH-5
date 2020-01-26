@@ -176,7 +176,7 @@ def virus_app(userid , text_input):
             user_database[userid]["session"] = None  
             save(user_database,Virus_database)  
             ## output
-            return "ท่านได้ทำการลบข้อมูลของไวรัส {} สามารถตรวจสอบได้ที่ {}".format(ชื่อของไวรัส,'https://'+request.host)
+            return "ท่านได้ทำการลบข้อมูลของไวรัส {} สามารถตรวจสอบได้ที่\n {}".format(ชื่อของไวรัส,'https://'+request.host)
         else:
             return "กรุณากรอกชื่อไวรัสใหม่อีกครั้งคะ"
     
@@ -189,7 +189,7 @@ def virus_app(userid , text_input):
             user_database[userid]["session"] = None 
             save(user_database,Virus_database)   
             ## output
-            return "นี้คือข้อมูลของไวรัส {} มีข้อมูลดังนี้\n{} สามารถตรวจสอบได้ที่ {}".format(ชื่อของไวรัส,Data_To_Show,'https://'+request.host)
+            return "นี้คือข้อมูลของไวรัส {} มีข้อมูลดังนี้\n{} สามารถตรวจสอบได้ที่\n {}".format(ชื่อของไวรัส,Data_To_Show,'https://'+request.host)
         else:
             return "กรุณากรอกชื่อไวรัสใหม่อีกครั้งคะ"
         
@@ -254,7 +254,7 @@ def virus_app(userid , text_input):
             Virus_database[ชื่อของไวรัส]["จำนวนผู้เสียชีวิต"] = text_input
             user_database[userid]["session"] = None
             save(user_database,Virus_database)
-            return "ท่านได้สร้างข้อมูลไวรัส {} เสร็จแล้วเรียบร้อย ตรวจสอบได้ที่{}".format(ชื่อของไวรัส,'https://'+request.host)
+            return "ท่านได้สร้างข้อมูลไวรัส {} เสร็จแล้วเรียบร้อย ตรวจสอบได้ที่\n{}".format(ชื่อของไวรัส,'https://'+request.host)
         else :
             return "กรุณาระบุตัวเลขผู้ติดเสียชีวิตอีกครั้งคะ" 
     
