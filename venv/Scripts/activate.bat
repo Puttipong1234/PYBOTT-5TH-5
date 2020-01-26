@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set "VIRTUAL_ENV=C:\Users\SAMPLE\Desktop\PYBOT-5-DAY2\PYBOTT-5TH-5\venv"
+set "VIRTUAL_ENV=C:\Users\SAMPLE\Desktop\PYBOT-5-FINAL\PYBOTT-5TH-5\venv"
 
 if not defined PROMPT (
     set "PROMPT=$P$G"
