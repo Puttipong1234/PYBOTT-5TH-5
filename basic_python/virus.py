@@ -159,9 +159,14 @@ def virus_app(userid , text_input):
 
                 bubble = flex_find_row(แถวที่พบ,คำที่ค้นหา,คะแนนความเที่ยงตรง,คอลัมน์ที่ค้นพบคำนี้,รายการที่ค้นพบ)
                 all_bubbles.append(bubble)
-
+            ### adding Text and quick reply
+            q_btn = QuickReplyButton(action=MessageAction(label="ออกจากการค้นหา",text="ออกจากการค้นหา"))
+            q_reply = QuickReply(items=[q_btn])
+            add_text = TextSendMessage(text="หากต้องการออกจากกันค้นหากรุณากดปุ่มหรือพิมพ์ 'ออกจากการค้นหา' นะคะ",quick_reply=q_reply)
+            add_text = add_text.as_json_dict()
+            
             flex_to_reply = make_carousel(all_bubble = all_bubbles)
-            flex_to_reply = SetMessage_Object(Message_data=flex_to_reply)
+            flex_to_reply = SetMessage_Object(Message_data=[flex_to_reply,add_text])
             # print(type(flex_to_reply))
             # TEXT_TO_REPLY_2 = TextSendMessage(text="ท่านสามารถพิมพ์คีย์เวิดในการค้นหาต่อไปได้ หรือหากต้องการหยุด ให้พิมพ์ว่า 'ออกจากการค้นหา'")
             return flex_to_reply
