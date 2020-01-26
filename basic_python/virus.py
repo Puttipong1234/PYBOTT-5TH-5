@@ -87,7 +87,6 @@ import pickle
 
 ### adding domain url to web
 from flask import request
-WEB_URL = 'https://'+request.host
 
 
 def save(user_database,virus_database):
@@ -177,7 +176,7 @@ def virus_app(userid , text_input):
             user_database[userid]["session"] = None  
             save(user_database,Virus_database)  
             ## output
-            return "ท่านได้ทำการลบข้อมูลของไวรัส {} สามารถตรวจสอบได้ที่ {}".format(ชื่อของไวรัส,WEB_URL)
+            return "ท่านได้ทำการลบข้อมูลของไวรัส {} สามารถตรวจสอบได้ที่ {}".format(ชื่อของไวรัส,'https://'+request.host)
         else:
             return "กรุณากรอกชื่อไวรัสใหม่อีกครั้งคะ"
     
@@ -190,7 +189,7 @@ def virus_app(userid , text_input):
             user_database[userid]["session"] = None 
             save(user_database,Virus_database)   
             ## output
-            return "นี้คือข้อมูลของไวรัส {} มีข้อมูลดังนี้\n{} สามารถตรวจสอบได้ที่ {}".format(ชื่อของไวรัส,WEB_URL,Data_To_Show)
+            return "นี้คือข้อมูลของไวรัส {} มีข้อมูลดังนี้\n{} สามารถตรวจสอบได้ที่ {}".format(ชื่อของไวรัส,'https://'+request.host,Data_To_Show)
         else:
             return "กรุณากรอกชื่อไวรัสใหม่อีกครั้งคะ"
         
