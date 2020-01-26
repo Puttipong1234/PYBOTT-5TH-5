@@ -98,6 +98,7 @@ def save(user_database,virus_database):
 save(user_database=user_database,virus_database=Virus_database)
 
 def virus_app(userid , text_input):
+    text_input = str(text_input)
     ### read database
     with open(DB_PATH, 'rb') as handle:
         data = pickle.load(handle)
