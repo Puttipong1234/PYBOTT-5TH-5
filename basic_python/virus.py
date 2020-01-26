@@ -108,28 +108,28 @@ def virus_app(userid , text_input):
     if user_database[userid]["session"] is None:
         if text_input == "1":
             user_database[userid]["session"] = "CREATE_VIRUS"
-            save(user_database)  
+            save(user_database,Virus_database)  
             return "กรุณาระบุชื่อไวรัส"
         
         elif text_input == "2":
             user_database[userid]["session"] = "DELETE_VIRUS"
-            save(user_database)  
+            save(user_database,Virus_database)  
             return "กรุณาระบุชื่อไวรัส"
         
         elif text_input == "3":
             user_database[userid]["session"] = "UPDATE_VIRUS"
-            save(user_database)  
+            save(user_database,Virus_database)  
             return "กรุณาระบุชื่อไวรัส"
         
         elif text_input == "4":
             user_database[userid]["session"] = "SHOW_VIRUS"
             print("hello")
-            save(user_database)  
+            save(user_database,Virus_database)  
             return "กรุณาระบุชื่อไวรัส"
         
         elif text_input == "เข้าสู่เมนู CSV Search":
             user_database[userid]["session"] = "CSV_FINDER"
-            save(user_database)  
+            save(user_database,Virus_database)  
             return "ท่านได้เข้าสู่เมนูการค้นหาข้อมูลจากไฟล์ Excel , CSV \n กรุณาระบุ Keyword ที่ท่านต้องการค้นหา"
         
         else :
@@ -139,7 +139,7 @@ def virus_app(userid , text_input):
     elif user_database[userid]["session"] == "CSV_FINDER":
         if text_input == "ออกจากการค้นหา":
             user_database[userid]["session"] = None
-            save(user_database)  
+            save(user_database,Virus_database)  
             return "ท่านได้ออกจากเมนูค้นหาไฟล์ CSV"
         
         else:
@@ -171,7 +171,7 @@ def virus_app(userid , text_input):
             ## update
             Virus_database.pop(ชื่อของไวรัส)
             user_database[userid]["session"] = None  
-            save(user_database)  
+            save(user_database,Virus_database)  
             ## output
             return "ท่านได้ทำการลบข้อมูลของไวรัส {} สามารถตรวจสอบได้ที่ http://127.0.0.1:5000/".format(ชื่อของไวรัส)
         else:
@@ -184,7 +184,7 @@ def virus_app(userid , text_input):
             ## update
             Data_To_Show = Virus_database[ชื่อของไวรัส]
             user_database[userid]["session"] = None 
-            save(user_database)   
+            save(user_database,Virus_database)   
             ## output
             return "นี้คือข้อมูลของไวรัส {} มีข้อมูลดังนี้\n{} สามารถตรวจสอบได้ที่ http://127.0.0.1:5000/".format(ชื่อของไวรัส,Data_To_Show)
         else:
@@ -199,7 +199,7 @@ def virus_app(userid , text_input):
             user_database[userid]["ชื่อของไวรัส"] = ชื่อของไวรัส
             Virus_database[ชื่อของไวรัส] = {}
             user_database[userid]["session"] = "INPUT_VIRUS_DATA_AREA"  ### ใส่ข้อมูลของ ไวรัส
-            save(user_database)  
+            save(user_database,Virus_database)  
             ## output
             return "กรุณากรอกข้อมูล บริเวณที่ระบาด ของไวรัสด้วยค่ะ"
         else:
@@ -214,7 +214,7 @@ def virus_app(userid , text_input):
             user_database[userid]["ชื่อของไวรัส"] = ชื่อของไวรัส
             Virus_database[ชื่อของไวรัส] = {}
             user_database[userid]["session"] = "INPUT_VIRUS_DATA_AREA"  ### ใส่ข้อมูลของ ไวรัส
-            save(user_database)  
+            save(user_database,Virus_database)  
             ## output
             return "กรุณากรอกข้อมูล บริเวณที่ระบาด ของไวรัสด้วยค่ะ"
         else:
@@ -226,7 +226,7 @@ def virus_app(userid , text_input):
         ชื่อของไวรัส = user_database[userid]["ชื่อของไวรัส"]
         Virus_database[ชื่อของไวรัส]["ระบาดใน"] = text_input
         user_database[userid]["session"] = "INPUT_VIRUS_DATA_INFECTED"
-        save(user_database)  
+        save(user_database,Virus_database)  
         ## output
         return "กรุณากรอกข้อมูล จำนวนผู้ติดเชื้อ ของไวรัสด้วยค่ะ (ระบุเป็นตัวเลขเท่านั้น)"
  
@@ -239,7 +239,7 @@ def virus_app(userid , text_input):
             ## update
             Virus_database[ชื่อของไวรัส]["จำนวนผู้ติดเชื้อ"] = text_input
             user_database[userid]["session"] = "INPUT_VIRUS_DATA_DEAD"
-            save(user_database)  
+            save(user_database,Virus_database)  
             ## output
             return "กรุณากรอกข้อมูล จำนวนผู้เสียชีวิต ของไวรัสด้วยค่ะ (ระบุเป็นตัวเลขเท่านั้น)"  
         else :
@@ -250,7 +250,7 @@ def virus_app(userid , text_input):
             ชื่อของไวรัส = user_database[userid]["ชื่อของไวรัส"]
             Virus_database[ชื่อของไวรัส]["จำนวนผู้เสียชีวิต"] = text_input
             user_database[userid]["session"] = None
-            save(user_database)
+            save(user_database,Virus_database)
             return "ท่านได้สร้างข้อมูลไวรัส เสร็จแล้วเรียบร้อย"
         else :
             return "กรุณาระบุตัวเลขผู้ติดเสียชีวิตอีกครั้งคะ" 
