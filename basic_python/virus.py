@@ -189,7 +189,7 @@ def virus_app(userid , text_input):
             user_database[userid]["session"] = None 
             save(user_database,Virus_database)   
             ## output
-            return "นี้คือข้อมูลของไวรัส {} มีข้อมูลดังนี้\n{} สามารถตรวจสอบได้ที่ {}".format(ชื่อของไวรัส,'https://'+request.host,Data_To_Show)
+            return "นี้คือข้อมูลของไวรัส {} มีข้อมูลดังนี้\n{} สามารถตรวจสอบได้ที่ {}".format(ชื่อของไวรัส,Data_To_Show,'https://'+request.host)
         else:
             return "กรุณากรอกชื่อไวรัสใหม่อีกครั้งคะ"
         
