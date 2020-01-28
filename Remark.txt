@@ -1,4 +1,30 @@
-1. Config ใช้เก็บ abspath จะดีที่สุดในการเรียกไฟล์ต่างๆ 
-2. ใช้ฐานข้อมูล pickle ในการช่วยเก็บ dictionary user database & user session เนื่องจาก การทำงานของ Heroku , ฟังก์ชั่น save และ save ทุกครั้งที่ เปลี่ยนแปลงข้อมูล
+(config.py)
+1. Config ใช้เก็บ abspath จะดีที่สุดในการเรียกไฟล์ต่างๆ
+C:\Users\SAMPLE\Desktop\PYBOT-5-FINAL\PYBOTT-5TH-5\basic_python\CSVs\รายการบ้านสองชั้น.csv
+\app\basic_python\CSVs\รายการบ้านสองชั้น.csv
+
+(Virus.py)
+2. ใช้ฐานข้อมูล pickle ในการช่วยเก็บ dictionary user database & user session เนื่องจาก 
+การทำงานของ Heroku , ฟังก์ชั่น save และ save ทุกครั้งที่ เปลี่ยนแปลงข้อมูล
+
+(Virus.py)
 3. Host.name ใช้เรียก domain name ได้อัตโนมัติ route ไปหน้าเว็บได้
+
+(app.py)
 4. table ที่แสดงหน้าเว็บใช้วิธีการเรียกจากฐานข้อมูลแทน
+
+(Virus.py ตอนแสดงผลจากการค้นหา CSV)
+5. line 162 เพิ่ม quick reply กับ text message ลงไปตอน csv แสดงผล
+
+
+
+สรุป
+
+วางแผน > flow chart 
+
+python code(while true) chat app ออกมาก่อน
+แปลงcodeเป็น session base แล้วนำไป เชื่อมต่อกับ line platform (ngrok / venv) > markup UI/UX ที่ดีขึ้น
+ngrok : ngrok http 5000
+venv : - python -m venv venv (ในเทอมินอล folder path พิมพ์ cmd)
+       - จะได้โฟลเดอ venv มา พิมคำสั่ง venv\Scripts\activate (venv)หน้า path
+Deploy
